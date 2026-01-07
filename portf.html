@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* ============ GLOBAL ============ */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    scroll-behavior: smooth;
+}
+
+section {
+    padding: 90px 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ============ NAVBAR ============ */
+.navbar {
+    background: #111;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin-left: 14px;
+}
+
+/* ============ HOME ============ */
+#home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+}
+
+#home h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111;
+}
+
+#home p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+#home img {
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #e5e5e5;
+}
+
+/* ============ SECTION TITLE ============ */
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #111;
+}
+
+.section-title::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #111;
+    display: block;
+    margin: 14px auto 0;
+    border-radius: 2px;
+}
+
+/* ============ ABOUT ============ */
+#about p {
+    max-width: 900px;
+    margin: auto;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #444;
+}
+
+/* ================= SKILLS SECTION ================= */
+#skills {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #020617, #0f172a);
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
+}
+
+/* Skill Card */
+.skill-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    transition: all 0.35s ease;
+}
+
+/* Skill Icon */
+.skill-card img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    margin-bottom: 14px;
+    filter: grayscale(100%);
+    transition: all 0.35s ease;
+}
+
+/* Skill Name */
+.skill-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #cbd5f5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #skills {
+        padding: 80px 20px;
+    }
+
+    .skill-card img {
+        width: 55px;
+        height: 55px;
+    }
+}
+
+
+/* ============ PROJECTS ============ */
+.card {
+    border-radius: 18px;
+    border: 1px solid #e5e5e5;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: #111;
+}
+
+.card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: 700;
+    color: #111;
+}
+
+.card-text {
+    color: #555;
+}
+
+.badge {
+    background: #f0f0f0 !important;
+    color: #111 !important;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+/* ============ CERTIFICATIONS ============ */
+.cert-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e5e5e5;
+    transition: all 0.25s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-6px);
+    border-color: #111;
+}
+
+.cert-card h5 {
+    font-weight: 600;
+}
+
+.cert-card p {
+    color: #666;
+}
+
+/* ============ CONTACT SECTION ============ */
+#contact {
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    padding: 80px 0;
+}
+
+/* Section Title */
+#contact .section-title {
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+#contact .section-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #111;
+    display: block;
+    margin: 12px auto 0;
+    border-radius: 10px;
+}
+
+/* Contact Card */
+#contact .row {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Inputs & Textarea */
+#contact input,
+#contact textarea {
+    border-radius: 14px;
+    border: 1px solid #e5e5e5;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    border-color: #111;
+    box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.15);
+}
+
+/* Button */
+#contact button {
+    background: #111;
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+#contact button:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+/* Social Section */
+#contact h5 {
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Social Links */
+#contact a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 22px;
+    border-radius: 18px;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+#contact a img {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease;
+}
+
+#contact a p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Hover Effects */
+#contact a:hover img {
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #contact .row {
+        padding: 25px;
+    }
+
+    #contact .section-title {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* ============ FOOTER ============ */
+footer {
+    background: #ffffff;
+    border-top: 1px solid #e5e5e5;
+    color: #666;
+    padding: 20px 0;
+}
+
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Portfolio</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Home Section -->
+<section id="home">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center">
+                <h1>Hello, I'm <span class="text-primary">Prathmesh Marathe</span></h1>
+                <p class="lead">Web Developer | Programmer | Problem Solver</p>
+                <a 
+                href="https://drive.google.com/file/d/1qZvek9iaV5SS2Dpd1CAmgiDrHSyJcPAb/view?usp=sharing" 
+                target="_blank" 
+                class="btn btn-primary btn-lg">
+                <i class="bi bi-download me-2"></i>Download Resume
+            </a>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="images/profileImg.jpg" alt="Profile Image" class="img-fluid rounded-circle">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="container text-center">
+        <h2 class="section-title">About Me</h2>
+        <p class="lead">
+           I'm a passionate engineering graduate with a strong foundation in problem-solving and web development. My journey in engineering has been driven by curiosity and a desire to create solutions that make a real impact. <br><br>
+           Throughout my academic career, I've developed expertise in various engineering disciplines and technologies like DSA, Web Development, Machine Learning. I thrive in collaborative environments and am always eager to learn new skills and take on challenging projects. <br><br>
+           My approach combines technical excellence with creative thinking, allowing me to tackle complex problems from multiple angles. I believe in continuous learning and staying updated with the latest industry trends and technologies.
+        </p>
+    </div>
+</section>
+
+<!-- ===== SKILLS SECTION ===== -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Technical Skills</h2>
+
+            <div class="skills-grid">
+                <!-- Skill Item -->
+                <div class="skill-card">
+                    <img src="images/cpp.png" alt="C++">
+                    <p>C / C++</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/java.png" alt="Java">
+                    <p>Java</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/python.png" alt="Python">
+                    <p>Python</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/javascript.png" alt="JavaScript">
+                    <p>JavaScript</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/html.png" alt="HTML">
+                    <p>HTML</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/css.png" alt="CSS">
+                    <p>CSS</p>
+                </div>
+
+                <div class="skill-card">
+                    <img src="images/nodejs.png" alt="Node.js">
+                    <p>Node.js</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Projects -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title text-center">Projects</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/project1.png" class="card-img-top" alt="Github Profile Finder">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">GitHub Profile Finder</h5>
+                        
+                        <p class="card-text">
+                            A web app that fetches and displays GitHub user profiles using the GitHub REST API with real-time data.
+                        </p>
+
+                        <!-- Technologies Section -->
+                        <div class="mt-2 mb-3">
+                            <span class="badge bg-primary me-1">HTML</span>
+                            <span class="badge bg-warning text-dark me-1">CSS</span>
+                            <span class="badge bg-success me-1">JavaScript</span>
+                            <span class="badge bg-dark me-1">GitHub API</span>
+                            <span class="badge bg-info text-dark">AJAX</span>
+                        </div>
+
+                        <a 
+                            href="https://github.com/Prathmesh-Marathe/Github-Profile-Finder" 
+                            target="_blank" 
+                            class="btn btn-outline-primary mt-auto">
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="images/project2.png" class="card-img-top" alt="Student Success Tracker">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Chorachiwadi Student Success Tracker</h5>
+                        
+                        <p class="card-text">
+                            An AI-powered student performance analysis system that enables teachers to analyze,
+                            visualize, cluster, and predict student outcomes using machine learning and interactive dashboards.
+                        </p>
+
+                        <!-- Technologies Section -->
+                        <div class="mt-2 mb-3">
+                            <span class="badge bg-primary me-1">Python</span>
+                            <span class="badge bg-success me-1">Streamlit</span>
+                            <span class="badge bg-warning text-dark me-1">Pandas</span>
+                            <span class="badge bg-info text-dark me-1">NumPy</span>
+                            <span class="badge bg-secondary me-1">Scikit-learn</span>
+                            <span class="badge bg-dark me-1">ML</span>
+                            <span class="badge bg-danger me-1">Random Forest</span>
+                            <span class="badge bg-primary me-1">K-Means</span>
+                            <span class="badge bg-success me-1">Gemini AI</span>
+                        </div>
+
+                        <a 
+                            href="https://github.com/Prathmesh-Marathe/Chorachiwadi-Student-Success-Tracker"
+                            target="_blank"
+                            class="btn btn-outline-primary mt-auto">
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</section>
+
+<section id="certifications" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Certifications</h2>
+
+        <div class="row g-4">
+            <!-- Certification 1 -->
+            <div class="col-md-6">
+                <div class="cert-card p-4 shadow-sm h-100">
+                    <h5>Java Certification</h5>
+                    <p class="text-muted mb-1">Issued by Udemy</p>
+                    <small class="text-secondary">2025</small><br>
+                    <a href="https://www.udemy.com/certificate/UC-66898513-9cf4-4f26-8822-82409966b550/"
+                        target="_blank"
+                        class="cert-link">
+                            <i class="bi bi-box-arrow-up-right"></i> View Credentials
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 2 -->
+            <div class="col-md-6">
+                <div class="cert-card p-4 shadow-sm h-100">
+                    <h5>Machine Learning</h5>
+                    <p class="text-muted mb-1">Issued by Udemy</p>
+                    <small class="text-secondary">2025</small><br>
+                    <a href="https://www.udemy.com/certificate/UC-c106b229-5544-4e63-962c-397a94f8838e/"
+                        target="_blank"
+                        class="cert-link">
+                            <i class="bi bi-box-arrow-up-right"></i> View Credentials
+                    </a>
+                </div>
+            </div>
+
+            <!-- Certification 3 -->
+            <div class="col-md-6">
+                <div class="cert-card p-4 shadow-sm h-100">
+                    <h5>NPTEL DBMS</h5>
+                    <p class="text-muted mb-1">Issued by NPTEL</p>
+                    <small class="text-secondary">2025</small><br>
+                    <a href="https://drive.google.com/file/d/1dgC3wXpGUDLb6amp5GTHjwZ_hwpPxs9B/view?usp=sharing"
+                        target="_blank"
+                        class="cert-link">
+                            <i class="bi bi-box-arrow-up-right"></i> View Credentials
+                    </a>
+                </div>
+            </div>
+
+</section>
+
+<!-- Contact -->
+<section id="contact" class="bg-light py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Contact</h2>
+
+        <div class="row g-4 align-items-center">
+            <!-- Contact Form -->
+            <div class="col-md-6">
+                <input type="text" class="form-control mb-3" placeholder="Your Name">
+                <input type="email" class="form-control mb-3" placeholder="Your Email">
+                <textarea class="form-control mb-3" rows="4" placeholder="Your Message"></textarea>
+                <button class="btn btn-primary w-100">Send Message</button>
+            </div>
+
+            <!-- Social Links -->
+            <div class="col-md-6 text-center">
+                <h5 class="mb-4">Connect with me</h5>
+
+                <div class="d-flex justify-content-center gap-5">
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/prathmesh-marathe-223701326/"
+                       target="_blank"
+                       class="text-decoration-none text-dark">
+                        <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                             alt="LinkedIn"
+                             width="50"
+                             class="mb-2">
+                        <p class="mb-0 fw-semibold">LinkedIn</p>
+                    </a>
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/Prathmesh-Marathe"
+                       target="_blank"
+                       class="text-decoration-none text-dark">
+                        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                             alt="GitHub"
+                             width="50"
+                             class="mb-2">
+                        <p class="mb-0 fw-semibold">GitHub</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="text-center">
+    <p class="mb-0">&copy; 2026 Prathmesh Marathe | All Rights Reserved</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
